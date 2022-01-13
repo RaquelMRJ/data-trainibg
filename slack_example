@@ -1,0 +1,20 @@
+from datetime import datetime
+
+from airflow.models.dag import DAG
+from airflow.operators.slack_operator import SlackAPIPostOperator
+
+with DAG(
+    dag_id='slack_example',
+    schedule_interval=None,
+    start_date=datetime(2021, 1, 1),
+    default_args={'slack_conn_id':'slack_d0a100','text':'Hello, This is my first Milestone proyect!','channel':'tests-playground', 'username':'airflow'},
+    max_active_runs=1,
+    tags=['example'],
+    )as dag:
+
+  # Send message to channel
+  slack_message_send = SlackAPIPostOperator(
+      task_id="salck_send_message"
+      )
+
+  slack_message_send

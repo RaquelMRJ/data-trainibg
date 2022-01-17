@@ -95,7 +95,7 @@ class S3ToPostgresTransfer(BaseOperator):
         date_cols = ['fechaRegistro']         
 
         # read a csv file with the properties required.
-        df_products = pd.read_csv(io.StringIO(list_srt_content), 
+        df_user_purchase = pd.read_csv(io.StringIO(list_srt_content), 
                          header=0, 
                          delimiter=",",
                          quotechar='"',
@@ -112,7 +112,7 @@ class S3ToPostgresTransfer(BaseOperator):
         list_df_user_purchase = [tuple(x) for x in list_df_user_purchase]
         self.log.info(list_df_user_purchase)   
        
-        # Read the file with the DDL SQL to create the table products in postgres DB.
+        # Read the file with the DDL SQL to create the table user_purchase in postgres DB.
         nombre_de_archivo = "bootcampdb.user_purchase.sql"
         
         ruta_archivo = + os.path.sep + nombre_de_archivo
@@ -146,12 +146,12 @@ class S3ToPostgresTransfer(BaseOperator):
         
         self.current_table = self.schema + '.' + self.table
         self.pg_hook.insert_rows(self.current_table,  
-                                 list_df_products, 
+                                 list_df_user_purchase, 
                                  target_fields = list_target_fields, 
                                  commit_every = 1000,
                                  replace = False)
 
-        # Query and print the values of the table products in the console.
+        # Query and print the values of the table user_purchase in the console.
         self.request = 'SELECT * FROM ' + self.current_table
         self.log.info(self.request)
         self.connection = self.pg_hook.get_conn()

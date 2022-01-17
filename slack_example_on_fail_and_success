@@ -5,16 +5,16 @@ from airflow.operators.bash import BashOperator
 def slack_failed_task(context):
     failed_alert = SlackAPIPostOperator(
             task_id='slack_failed',
-            channel='tests-playground',
+            channel='tests',
             slack_conn_id="slack_d0a100",
             text=':red_circle: Task Failed',
-            username='airflow',
+            username='admin',
             )
     return failed_alert.execute(context=context)
 def slack_success_task(context):
     success_alert = SlackAPIPostOperator(
             task_id='slack_success',
-            channel='tests-playground',
+            channel='tests',
             slack_conn_id='slack_d0a100',
             text=':green_heart: Task Completed!!',
             username='airflow',

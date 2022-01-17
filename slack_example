@@ -4,6 +4,11 @@ from airflow import DAG
 from airflow.models.dag import DAG
 from airflow.operators.slack_operator import SlackAPIPostOperator
 
+dag=DAG('slack_example',
+          default_args=default_args,
+          schedule_interval='@once',
+          catchup=False)
+
 with DAG(
     dag_id='slack_example',
     schedule_interval=None,

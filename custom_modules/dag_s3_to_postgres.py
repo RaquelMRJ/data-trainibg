@@ -115,7 +115,7 @@ class S3ToPostgresTransfer(BaseOperator):
         self.log.info(list_df_products)   
        
         # Read the file with the DDL SQL to create the table products in postgres DB.
-        nombre_de_archivo = "bootcampdb.products.sql"
+        nombre_de_archivo = "dbname.products.sql"
         
         ruta_archivo = '/usr/local/airflow/custom_modules/assets' + os.path.sep + nombre_de_archivo
         self.log.info(ruta_archivo)

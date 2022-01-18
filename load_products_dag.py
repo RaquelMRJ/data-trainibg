@@ -16,7 +16,7 @@ dag = DAG('dag_insert_data', default_args = default_args, schedule_interval = '@
 
 process_dag = S3ToPostgresTransfer(
     task_id = 'dag_s3_to_postgres',
-    schema = 'bootcampdb',
+    schema = 'dbname',
     table= 'products',
     s3_bucket = 's3-data-milestone2',
     s3_key =  'products.csv',

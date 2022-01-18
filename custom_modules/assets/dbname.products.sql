@@ -1,8 +1,8 @@
--- Table: bootcampdb.products
+-- Table: dbname.products
 
-DROP TABLE bootcampdb.products;
+DROP TABLE dbname.products;
 
-CREATE TABLE IF NOT EXISTS bootcampdb.products
+CREATE TABLE IF NOT EXISTS dbname.products
 (
     id SERIAL PRIMARY KEY,
     producto VARCHAR(255),
